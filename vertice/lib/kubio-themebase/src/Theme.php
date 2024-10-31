@@ -63,17 +63,21 @@ class Theme extends ThemeBase {
 		}
 
 		$slug = get_template() . '-page-info';
-        	$is_fresh_site = !$this->themeWasCustomized();
+        $is_fresh_site = !$this->themeWasCustomized();
 
-	        if ( !$is_fresh_site ) {
-	            return false;
-	        }
+        if ( !$is_fresh_site ) {
+            return false;
+        }
 
 		if ( get_option( "{$slug}-theme-notice-dismissed", false ) !== false ) {
 			return false;
 		}
 
 		if ( apply_filters( 'kubio_is_enabled', false ) ) {
+			return false;
+		}
+
+		if ( Flags::get( 'with_starter_content', false ) ) {
 			return false;
 		}
 
@@ -229,17 +233,24 @@ class Theme extends ThemeBase {
 	}
 
 	public function themeWasCustomized() {
+
 		if ( Flags::get( 'theme_customized' ) ) {
 			return true;
 		}
 
-		$mods         = get_theme_mods();
-		$mods_keys    = array_keys( is_array( $mods ) ? $mods : array() );
-		$default_keys = array_keys( Defaults::getDefaults() );
+		$mods              = get_theme_mods();
+		$mods_keys         = array_keys( is_array( $mods ) ? $mods : array() );
+		$default_keys      = array_keys( Defaults::getDefaults() );
+		$default_blog_keys = array(
+			'blog_post_thumb_placeholder_color',
+			'blog_show_post_thumb_placeholder',
+			'blog_posts_per_row',
+			'blog_enable_masonry'
+		);
 
 		foreach ( $default_keys as $default_key ) {
 			foreach ( $mods_keys as $mod_key ) {
-				if ( strpos( $mod_key, "{$default_key}." ) === 0 ) {
+				if ( in_array( $mod_key, $default_blog_keys) || strpos( $mod_key, "{$default_key}." ) === 0 ) {
 					Flags::set( 'theme_customized', true );
 
 					return true;

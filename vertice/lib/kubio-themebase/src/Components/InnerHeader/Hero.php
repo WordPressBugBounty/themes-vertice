@@ -49,7 +49,8 @@ class Hero extends \Kubio\Theme\Components\FrontHeader\Hero {
 		}
 
 		if ( $bgImage ) {
-			echo "background-image:url('$bgImage')";
+			$bgImageSanitized = esc_url( $bgImage );
+			echo "background-image:url('$bgImageSanitized')";
 		}
 	}
 

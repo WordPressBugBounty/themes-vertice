@@ -41,7 +41,7 @@ wp_localize_script(
 
 <div class="vertice-admin-big-notice--container">
 	<div class="logo-holder">
-		<h2><?php Translations::escHtmlE( 'start_with_a_front_page' ); ?></h2>
+		<h2><?php echo sprintf(__("Choose one of the %s predefined designs to start with:", 'vertice'), ucfirst(get_stylesheet())); ?></h2>
 	</div>
 	<div class="content-holder">
 		<ul class="predefined-front-pages">
@@ -52,19 +52,32 @@ wp_localize_script(
 				?>
 				<li data-index="<?php echo esc_attr( $design['index'] ); ?>"
 					class="<?php echo $vertice_design_selected; ?>">
-					<div class="predefined-front-page-card">
+
+                    <div class="predefined-front-page-card">
+                        <div class="selected-badge"></div>
+
+                        <div class="predefined-front-page-card-header">
+                            <h3 class="design-title">
+			                    <?php echo esc_html( $design['name'] ); ?>
+                            </h3>
+                        </div>
 						<div class="front-page-design-wrapper">
-							<div class="selected-badge"></div>
 							<div class="design-preview-image"
 								 style="background-image: url(<?php echo esc_attr( vertice_theme()->getAssetsManager()->getBaseURL() . "/images/{$preview_image_name}" ); ?>)"
 							></div>
 						</div>
-					<div class="predefined-front-page-card-footer">
-							<h3 class="design-title">
-								<?php echo esc_html( $design['name'] ); ?>
-							</h3>
-						</div>
-					</div>
+
+                        <?php
+                            if($design['name'] === ""){?>
+                                <div class="predefined-front-page-card-footer">
+                                    <h3 class="design-content">
+			                            <?php echo __("Generate a tailored website in minutes using AI", 'vertice'); ?>
+                                    </h3>
+                                </div>
+                        <?php }
+                        ?>
+
+                    </div>
 				</li>
 			<?php endforeach; ?>
 		</ul>
@@ -74,10 +87,9 @@ wp_localize_script(
 			<button class="button button-primary button-hero start-with-predefined-design-button">
 				<?php Translations::escHtmlE( 'start_with_selected_page' ); ?>
 			</button>
-			<span class="or-separator"><?php Translations::escHtmlE( 'or' ); ?> </span>
-			<button class="button button-hero view-all-demos">
+			<a role="button" class="view-all-demos">
 				<?php Translations::escHtmlE( 'check_all_demo_sites_page' ); ?>
-			</button>
+			</a>
 		</div>
 		<div>
 			<div class="plugin-notice">

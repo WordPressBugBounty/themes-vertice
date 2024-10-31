@@ -109,6 +109,14 @@ The exceptions to this license are as follows:
         resources/images/header-shapes/rounded-squares-blue.png
         resources/images/header-shapes/two-circles.png
         resources/images/header-shapes/waves.png
+        starter-content/media/image21.jpg
+        starter-content/media/image22.jpg
+        starter-content/media/image23.jpg
+        starter-content/media/image24.jpg
+        starter-content/media/image25.jpg
+        starter-content/media/image26.jpg
+        starter-content/media/image27.jpg
+        starter-content/media/image28.jpg
 
   These assets are distributed under the CC0 License:
 
@@ -163,6 +171,95 @@ The exceptions to this license are as follows:
         resources/header-presets/images/StockSnap_Z2FVSJZAEN-hero1-1024x576.jpg, Copyright Ibrahim Asad
         License: CC0 1.0 Universal (CC0 1.0)
         Source: https://stocksnap.io/photo/Z2FVSJZAEN/
+        
+        About section:
+
+        starter-content/media/image-1.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/1629587
+
+        Features section:
+
+        starter-content/media/image-2.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/26634
+
+        starter-content/media/image-3.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/195
+
+        starter-content/media/image-4.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/1016778
+
+        Content section:
+
+        starter-content/media/image-5.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/722471
+
+        starter-content/media/image-6.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/876192
+
+        Projects section:
+
+        starter-content/media/image-17.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/1391834
+
+        starter-content/media/image-18.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/44963
+
+        starter-content/media/image-19.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/427155
+
+        starter-content/media/image-20.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/1392035#google_vignette
+
+        Contact section:
+
+        starter-content/media/image-29.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/13864
+
+
+        testimonials section:
+
+        starter-content/media/image-13.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://stocksnap.io/photo/smiling-woman-KS92MVGSXY
+
+        starter-content/media/image-14.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://stocksnap.io/photo/people-man-6WLI9TCF5G
+
+        starter-content/media/image-15.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://stocksnap.io/photo/people-man-PIH0RDL6G3
+
+        starter-content/media/image-16.jpg
+        License: CC0 1.0 Universal (CC0 1.0)
+        Source: https://pxhere.com/en/photo/495601
+
+- Google Icons:
+  Licensed under Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+
+  starter-content/media/image-7.jpg  
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:finance_mode:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=finance&icon.size=24&icon.color=%235f6368
+  starter-content/media/image-8.jpg
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:support_agent:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=person&icon.size=24&icon.color=%235f6368
+  starter-content/media/image-9.jpg
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:inventory_2:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=box&icon.size=24&icon.color=%235f6368
+  starter-content/media/image-10.jpg
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:settings:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=setting&icon.size=24&icon.color=%235f6368
+  starter-content/media/image-11.jpg
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:domino_mask:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=mask&icon.size=24&icon.color=%235f6368
+  starter-content/media/image-12.jpg
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:sell:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=tag&icon.size=24&icon.color=%235f6368
 
 - Google Fonts:
 

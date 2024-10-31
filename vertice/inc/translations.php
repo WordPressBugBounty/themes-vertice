@@ -303,7 +303,7 @@ return array(
 	'benefit_3'                               => __( 'Matching color scheme and typography', 'vertice' ),
 	'benefit_4'                               => __( 'Contact form and social media integration', 'vertice' ),
 	'start_with_a_front_page_plugin_info'     => __(
-		'These actions will also install the Kubio Page Builder plugin.',
+		'Any of these actions will also install the Kubio Page Builder plugin.',
 		'vertice'
 	),
 

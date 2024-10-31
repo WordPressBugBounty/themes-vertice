@@ -48,7 +48,7 @@ class Customizer {
 		if ( $control_type ) {
 			$constructor = ControlFactory::getConstructor( $control_type );
 
-			if ( method_exists( $constructor, 'sanitize' ) ) {
+			if ( $constructor && method_exists( $constructor, 'sanitize' ) ) {
 				return call_user_func(
 					array( $constructor, 'sanitize' ),
 					$value,

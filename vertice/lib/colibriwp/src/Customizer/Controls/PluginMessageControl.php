@@ -18,6 +18,9 @@ class PluginMessageControl extends VueControl {
 
 		?>
 		<div class="plugin-message card">
+			<button class="el-button el-button--icon el-button--text colibri-plugin-message-close">
+				<i class="el-icon-close"></i>
+			</button>
 			<p>
 				<?php echo Translations::get( 'plugin_message', 'Kubio Page Builder' ); ?>
 			</p>

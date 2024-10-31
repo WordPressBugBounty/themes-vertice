@@ -3990,24 +3990,29 @@ function pluginNotice(message) {
   colibriCustomizer.showOverlay(message);
 }
 
-function installBuilder(options) {
+function installBuilderBase(options, doneCallback) {
   pluginNotice(colibriwp_plugin_status.messages.installing);
   prepareCall(function () {
-    $.get(colibriwp_plugin_status.install_url).done(function () {
-      activateBuilder(options);
-    });
+    $.get(colibriwp_plugin_status.install_url).done(doneCallback);
+  });
+}
+
+function installBuilder(options) {
+  installBuilderBase(options, function () {
+    activateBuilder(options);
   });
 }
 
 function activateBuilder(options) {
   pluginNotice(colibriwp_plugin_status.messages.activating);
   prepareCall(function () {
-    var _options$source;
+    var _options$source, _options$payload;
 
     wp.ajax.post(colibriwp_plugin_status.theme_prefix + "activate_plugin", {
       slug: colibriwp_plugin_status.slug,
       _wpnonce: colibriwp_plugin_status.plugin_activate_nonce,
-      source: (_options$source = options === null || options === void 0 ? void 0 : options.source) !== null && _options$source !== void 0 ? _options$source : null
+      source: (_options$source = options === null || options === void 0 ? void 0 : options.source) !== null && _options$source !== void 0 ? _options$source : null,
+      payload: (_options$payload = options === null || options === void 0 ? void 0 : options.payload) !== null && _options$payload !== void 0 ? _options$payload : null
     }).done(function (response) {
       setTimeout(function () {
         window.location = response.redirect || window.location;
@@ -4032,21 +4037,31 @@ var PluginMessageControl = /*#__PURE__*/function (_ColibriVueControl) {
     value: function ready(wpControl) {
       wpControl.container.on("click", "[data-colibri-plugin-action]", function (event) {
         var $el = $(event.currentTarget);
-        var action = $el.data("colibri-plugin-action");
-        var source = "customizer-sidebar-feature";
+        var action = $el.attr("data-colibri-plugin-action");
+        var source = $el.attr("data-source") || "customizer-sidebar";
+        var payload;
+
+        try {
+          if ($el.attr("payload")) {
+            payload = JSON.parse($el.attr("payload"));
+          }
+        } catch (e) {}
+
         $el.fadeOut();
         event.preventDefault();
         event.stopPropagation();
 
         if (action === "install") {
           installBuilder({
-            source: source
+            source: source,
+            payload: payload
           });
         }
 
         if (action === "activate") {
           activateBuilder({
-            source: source
+            source: source,
+            payload: payload
           });
         }
       });
@@ -4081,10 +4096,18 @@ $(document).on("click", ".kubio-customizer-panel [data-colibri-plugin-action]", 
   var builderStatusData = window.colibri_Customizer_Data.builderStatusData;
   var $el = $(event.currentTarget);
   var action = $el.data("colibri-plugin-action");
-  var source = $el.data("source");
+  var source = $el.attr("source");
   event.preventDefault();
   event.stopPropagation();
-  var onboardingAction = (_document$querySelect = document.querySelector('input[name="kubio-onboarding-action"]:checked')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getAttribute('value');
+  var payload;
+
+  try {
+    if ($el.attr("payload")) {
+      payload = JSON.parse($el.attr("payload"));
+    }
+  } catch (e) {}
+
+  var onboardingAction = (_document$querySelect = document.querySelector('input[name="kubio-onboarding-action"]:checked')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getAttribute("value");
 
   if (onboardingAction) {
     if (builderStatusData.status === "not-installed") {
@@ -4103,17 +4126,23 @@ $(document).on("click", ".kubio-customizer-panel [data-colibri-plugin-action]", 
 
     if (action === "install") {
       installBuilder({
-        source: source
+        source: source,
+        payload: payload
       });
     }
 
     if (action === "activate") {
       activateBuilder({
-        source: source
+        source: source,
+        payload: payload
       });
     }
   }
 });
+window.KubioPluginManager = {
+  install: installBuilderBase,
+  activate: activateBuilder
+};
 
 /***/ }),
 
@@ -4960,7 +4989,7 @@ var api = wp.customize,
     popover = null;
 
 var updatePopoverPosition = function updatePopoverPosition() {
-  var linkedTo = popover.data('linkedTo');
+  var linkedTo = popover.data("linkedTo");
   var rect = linkedTo.getBoundingClientRect();
   var style = {
     top: rect.top + linkedTo.offsetHeight / 2 - popover.height() / 2 + "px",
@@ -4972,34 +5001,51 @@ var updatePopoverPosition = function updatePopoverPosition() {
 var showPopover = function showPopover(linkedTo) {
   if (!popover) {
     popover = jQuery("<div class='colibri-install-plugin-popover' ><ul></ul></div>");
-    jQuery('body').append(popover);
+    jQuery("body").append(popover);
   }
 
   if (!pluginControl) {
-    pluginControl = new pluginControlConstructor('colibri-install-plugin-popover-control', {});
+    pluginControl = new pluginControlConstructor("colibri-install-plugin-popover-control", {});
     pluginControl.renderContent();
     pluginControl.activate();
     pluginControl.ready();
-    popover.find('ul').append(pluginControl.container);
+    popover.find("ul").append(pluginControl.container);
   }
 
-  popover.data('linkedTo', linkedTo);
+  var source = "customizer-sidebar";
+
+  if (linkedTo.getAttribute("data-source")) {
+    source = linkedTo.getAttribute("data-source");
+  }
+
+  pluginControl.container.find("button").attr("data-source", source);
+  var payload = linkedTo.getAttribute("payload");
+
+  if (payload) {
+    pluginControl.container.find("button").attr("payload", payload);
+  }
+
+  popover.data("linkedTo", linkedTo);
   updatePopoverPosition();
   popover.fadeIn(100);
-  $(window).on('resize.colibri-popover', updatePopoverPosition);
-  $('body .wp-full-overlay-sidebar-content').on('scroll.colibri-popover', updatePopoverPosition);
-  $(document).on('click', '*', function (event) {
+  $(window).on("resize.colibri-popover", updatePopoverPosition);
+  $("body .wp-full-overlay-sidebar-content").on("scroll.colibri-popover", updatePopoverPosition);
+
+  var hidePopover = function hidePopover(event) {
     var target = event.currentTarget;
 
     if (!$.contains(popover[0], target)) {
       popover.fadeOut();
-      $(window).off('resize.colibri-popover');
-      $('body .wp-full-overlay-sidebar-content').off('scroll.colibri-popover');
+      $(window).off("resize.colibri-popover");
+      $("body .wp-full-overlay-sidebar-content").off("scroll.colibri-popover");
     }
-  });
+  };
+
+  $(document).on("click", "*", hidePopover);
+  $(window).on("blur", hidePopover);
 };
 
-api.bind('colibri_panel_button_clicked', function (name, event) {
+api.bind("colibri_panel_button_clicked", function (name, event) {
   if (name === "colibriwp_add_section" || name === "colibriwp_footers_panel") {
     showPopover(event.currentTarget);
   }

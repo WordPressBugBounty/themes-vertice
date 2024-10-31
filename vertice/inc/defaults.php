@@ -694,5 +694,11 @@ return array(
 			'index'   => 3,
 			'preview' => 'front-page-3.jpg',
 		),
+
+		array(
+			'name'    => __( '', 'vertice' ),
+			'index'   => 4,
+			'preview' => 'admin/ai-icon.svg',
+		),
 	),
 );

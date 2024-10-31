@@ -113,7 +113,9 @@ var __webpack_exports__ = {};
 
   $notice_container.on("click", ".start-with-predefined-design-button", function () {
     selectedFrontPage = $(".selected[data-index]").data("index");
-    processBuilderInstalationStepts();
+    processBuilderInstalationStepts(function () {}, {
+      AI: selectedFrontPage === 4
+    });
   });
   $notice_container.on("click", ".start-with-ai-page", function () {
     selectedFrontPage = $(".selected[data-index]").data("index");
@@ -121,14 +123,14 @@ var __webpack_exports__ = {};
       AI: true
     });
   });
-  $notice_container.on('click', '.view-all-demos', function () {
+  $notice_container.on("click", ".view-all-demos", function () {
     selectedFrontPage = 0;
     processBuilderInstalationStepts(function () {}, {
       AI: false,
       source: "starter-sites"
     });
   });
-  $notice_root = $notice_container.closest('.vertice-admin-big-notice');
+  $notice_root = $notice_container.closest(".vertice-admin-big-notice");
   $custom_close_button = $notice_root.find(".vertice-notice-dont-show-container");
 
   if ($custom_close_button.length) {

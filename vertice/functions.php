@@ -7,6 +7,7 @@
 
 use ColibriWP\Theme\Core\Hooks;
 use ColibriWP\Theme\Core\Utils;
+use Kubio\StarterContent\StarterContent;
 use ColibriWP\Theme\Defaults;
 use ColibriWP\Theme\Translations;
 use Kubio\Core\Activation;
@@ -21,6 +22,7 @@ use Kubio\Theme\Components\FrontHeader\Title;
 use Kubio\Theme\Components\FrontHeader\TopBar;
 use Kubio\Theme\Components\FrontHeader\TopBarListIcons;
 use Kubio\Theme\Components\FrontHeader\TopBarSocialIcons;
+use Kubio\Theme\Components\FrontPageContent;
 use Kubio\Theme\Components\Header;
 use Kubio\Theme\Components\Header\Logo;
 use Kubio\Theme\Components\HeaderMenu;
@@ -79,7 +81,7 @@ function vertice_register_components( $components ) {
 			'main'                 => MainContent::class, // blog loop
 			'single'               => SingleContent::class, // single page
 			'content'              => PageContent::class, // inner page content
-			'front-page-content'   => "{$namespace}\\FrontPageContent", // front page content
+			'front-page-content'   => FrontPageContent::class, // front page content
 			'search'               => "{$namespace}\\PageSearch", // search page
 			'page-not-found'       => PageNotFound::class, // 404 page
 
@@ -299,11 +301,12 @@ Hooks::prefixed_add_action(
 					array(
 						'page'                  => 'kubio',
 						'kubio-activation-hash' => $hash,
+						'source'                => $start_source,
 					),
 					admin_url( 'admin.php' )
 				);
 			} else {
-				if ( $start_source == 'starter-sites' ) {
+				if ( $start_source === 'starter-sites' ) {
 					$url = add_query_arg(
 						array(
 							'page'                  => 'kubio-get-started',
@@ -426,3 +429,81 @@ function kubio_onboarding_init() {
 }
 
 add_action( 'after_switch_theme', 'kubio_onboarding_init' );
+
+Hooks::prefixed_add_filter(
+	'translations',
+	function( $translations ) {
+		$translations['customize_preview_overlay_message']  = __( 'These features are part of the Kubio Page Builder plugin. Using them will install the plugin.', 'rufous' );
+		$translations['customize_preview_overlay_button_1'] = __( 'Edit this section', 'rufous' );
+		$translations['customize_preview_overlay_button_2'] = __( 'Replace this section', 'rufous' );
+
+		return $translations;
+	}
+);
+
+
+add_filter(
+	'kubio_starter_content_overlay_style',
+	function() {
+
+		return array(
+			'background' => 'rgba(0,0,0,0.8)',
+			'transition' => 'opacity 0.3s ease',
+			'button-1'   => array(
+				'normal' => array(
+					'background' => 'transparent',
+					'color'      => '#fff',
+					'border'     => '#fff',
+				),
+				'hover'  => array(
+					'background' => 'rgba(255,255,255,0.2)',
+					'color'      => '#fff',
+					'border'     => '#fff',
+				),
+			),
+			'button-2'   => array(
+				'normal' => array(
+					'background' => 'transparent',
+					'color'      => '#fff',
+					'border'     => '#fff',
+				),
+				'hover'  => array(
+					'background' => 'rgba(255,255,255,0.2)',
+					'color'      => '#fff',
+					'border'     => '#fff',
+				),
+			),
+		);
+	}
+);
+
+add_filter(
+	'kubio_starter_content_pages',
+	function() {
+		return array(
+			StarterContent::HOME_SLUG  => array(
+				'post_title' => __( 'Home', 'rufous' ),
+				'in_menu'    => true,
+			),
+
+			// StarterContent::ABOUT_SLUG => array(
+			// 	'post_title' => __( 'About', 'rufous' ),
+			// 	'in_menu'    => true,
+			// ),
+
+			StarterContent::BLOG_SLUG  => array(
+				'post_title' => __( 'Blog', 'rufous' ),
+				'in_menu'    => true,
+			),
+
+			// StarterContent::CONTACT    => array(
+			// 	'post_title' => __( 'Contact', 'rufous' ),
+			// 	'in_menu'    => true,
+			// ),
+
+		);
+	}
+);
+
+StarterContent::init();
+
