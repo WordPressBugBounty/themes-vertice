@@ -232,11 +232,11 @@ $vertice_gradients = array(
 		),
 
 );
-$vertice_theme_action_button           = __( 'Get in control', 'vertice' );
-$vertice_theme_action_button_secondary = __( 'Contact us', 'vertice' );
+$vertice_theme_action_button           = 'Get in control';
+$vertice_theme_action_button_secondary = 'Contact us';
 
-$vertice_theme_click_pen_to_edit_title = __( 'Unlock Your Potential', 'vertice' );
-$vertice_lorem_ipsum                   = __( 'Bringing your imaginative ideas to life with boundless imagination and innovative thinking is a remarkable journey that thrives on the synergy of innovation.', 'vertice' );
+$vertice_theme_click_pen_to_edit_title = 'Unlock Your Potential';
+$vertice_lorem_ipsum                   = 'Bringing your imaginative ideas to life with boundless imagination and innovative thinking is a remarkable journey that thrives on the synergy of innovation.';
 
 return array(
 	'default_icon'                      => $vertice_theme_svg_icons['fort-awesome'],
@@ -676,29 +676,4 @@ return array(
 	'blog_posts_per_row'                => 2,
 	'blog_enable_masonry'               => true,
 
-	'front_page_designs'                => array(
-		array(
-			'name'    => __( 'Fullscreen', 'vertice' ),
-			'index'   => 1,
-			'preview' => 'front-page-1.jpg',
-		),
-
-		array(
-			'name'    => __( 'Modern', 'vertice' ),
-			'index'   => 2,
-			'preview' => 'front-page-2.jpg',
-		),
-
-		array(
-			'name'    => __( 'Classic', 'vertice' ),
-			'index'   => 3,
-			'preview' => 'front-page-3.jpg',
-		),
-
-		array(
-			'name'    => __( '', 'vertice' ),
-			'index'   => 4,
-			'preview' => 'admin/ai-icon.svg',
-		),
-	),
 );

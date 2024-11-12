@@ -46,7 +46,7 @@ class Subtitle extends \ColibriWP\Theme\Components\FrontHeader\Subtitle {
 
 				),
 				"{$prefix}localProps.content" => array(
-					'default' => Defaults::get( 'lorem_ipsum' ),
+					'default' => __( 'Bringing your imaginative ideas to life with boundless imagination and innovative thinking is a remarkable journey that thrives on the synergy of innovation.', 'vertice' ),
 					'control' => array(
 						'label'       => Translations::get( 'subtitle' ),
 						'type'        => 'input',

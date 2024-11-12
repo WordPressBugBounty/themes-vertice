@@ -64,27 +64,27 @@ class StarterContent {
 			'editor-font-sizes',
 			array(
 				array(
-					'name' => esc_attr__( 'Small', 'vertice' ),
+					'name' =>  'Small',
 					'size' => '0.777em',
 					'slug' => 'small',
 				),
 				array(
-					'name' => esc_attr__( 'Medium', 'vertice' ),
+					'name' =>'Medium',
 					'size' => '0.888em',
 					'slug' => 'medium',
 				),
 				array(
-					'name' => esc_attr__( 'Large', 'vertice' ),
+					'name' =>  'Large',
 					'size' => '2em',
 					'slug' => 'large',
 				),
 				array(
-					'name' => esc_attr__( 'Extra Large', 'vertice' ),
+					'name' =>  'Extra Large',
 					'size' => '2.5em',
 					'slug' => 'x-large',
 				),
 				array(
-					'name' => esc_attr__( 'Extra Extra Large', 'vertice' ),
+					'name' => 'Extra Extra Large',
 					'size' => '3em',
 					'slug' => 'xx-large',
 				),
