@@ -91,7 +91,36 @@ class StarterContent {
 			)
 		);
 
+		add_filter('wp_theme_json_data_theme', array($this, 'add_shadow_presets_to_theme_json'));
 		// add_theme_support( 'wp-block-styles' );
+	}
+
+	/**
+	 *
+	 * @param \WP_Theme_JSON_Data $theme_json_data
+	 * @return void
+	 */
+	public function add_shadow_presets_to_theme_json($theme_json_data)
+	{
+		$theme_json_data->update_with(
+			array(
+				'version' => 2,
+				'settings' => array(
+					'shadow' => array(
+						// 'defaultPresets' => true,
+						"presets" => array(
+							array(
+								'name'   => 'Deep 2',
+								'shadow' => '0px 0px 50px rgba(0, 0, 0, 0.2)',
+								'slug'   => 'deep-2',
+							),
+						)
+					)
+				)
+			)
+		);
+
+		return $theme_json_data;
 	}
 
 	public function init_theme_json_and_styles() {

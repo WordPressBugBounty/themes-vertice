@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*! 
  Theme Name:   Vertice
- Version:      1.0.69
+ Version:      1.0.72
  Description:  Vertice is an innovative,  easily customizable, multi-purpose theme, focused on empowering users to build astonishing WordPress websites. Vertice is mainly designed for small businesses, startups, or personal portfolio websites and works perfectly with Kubio Page Builder which enriches the WordPress block editor with a variety of new blocks and advanced styling options to give you full design freedom.
  Author:       Extend Themes
  Author URI:   https://kubiobuilder.com
@@ -1813,11 +1813,14 @@ html[lang] .wp-block-kubio-dropdown-menu>.kubio-menu>.menu>.menu-item>a>br{displ
  .wp-block-kubio-navigation.h-navigation_overlap{left:0;position:absolute!important;right:0;z-index:10001}
  .wp-block-kubio-navigation [data-nav-normal]{transition:all .5s}
  .wp-block-kubio-navigation .h-hide-normal{display:none}
+ .wp-block-kubio-navigation .h-navigation_sticky .wp-block-kubio-row__inner{display:grid;grid-template-columns:auto auto;justify-content:space-between!important}
+ .wp-block-kubio-navigation .h-navigation_sticky .wp-block-kubio-row__inner:has(>:nth-child(3)){display:flex}
  .wp-block-kubio-navigation .h-navigation_sticky .h-hide-normal{display:flex}
  .wp-block-kubio-navigation .h-navigation_sticky .h-hide-sticky{display:none}
  .wp-block-kubio-navigation__outer{position:relative}
  .wp-block-kubio-navigation_container-in-sticky{z-index:9999}@-webkit-keyframes slideOutDownNavigation{0%{transform:translateZ(0)}to{transform:translate3d(0,-100%,0);visibility:hidden}}@keyframes slideOutDownNavigation{0%{transform:translateZ(0)}to{transform:translate3d(0,-100%,0);visibility:hidden}}
  .slideOutDownNavigation{-webkit-animation-name:slideOutDownNavigation;animation-name:slideOutDownNavigation}
+ .fade-animation-without-other-transitions{transition-property:opacity!important}
  .wp-block-kubio-page-title{word-break:break-word}
  .wp-block-kubio-page-title .components-select-control__input{line-height:unset!important}
  .wp-block-kubio-page-title .kubio-alternate-logo-image{display:none}
