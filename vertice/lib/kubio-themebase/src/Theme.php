@@ -250,7 +250,7 @@ class Theme extends ThemeBase {
 
 		foreach ( $default_keys as $default_key ) {
 			foreach ( $mods_keys as $mod_key ) {
-				if ( in_array( $mod_key, $default_blog_keys) || strpos( $mod_key, "{$default_key}." ) === 0 ) {
+				if ( in_array( $mod_key, $default_blog_keys, true ) || strpos( $mod_key, "{$default_key}." ) === 0 ) {
 					Flags::set( 'theme_customized', true );
 
 					return true;

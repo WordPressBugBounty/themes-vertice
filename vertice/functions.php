@@ -435,9 +435,9 @@ add_action( 'after_switch_theme', 'kubio_onboarding_init' );
 Hooks::prefixed_add_filter(
 	'translations',
 	function( $translations ) {
-		$translations['customize_preview_overlay_message']  = __( 'These features are part of the Kubio Page Builder plugin. Using them will install the plugin.', 'rufous' );
-		$translations['customize_preview_overlay_button_1'] = __( 'Edit this section', 'rufous' );
-		$translations['customize_preview_overlay_button_2'] = __( 'Replace this section', 'rufous' );
+		$translations['customize_preview_overlay_message']  = __( 'These features are part of the Kubio Page Builder plugin. Using them will install the plugin.', 'vertice' );
+		$translations['customize_preview_overlay_button_1'] = __( 'Edit this section', 'vertice' );
+		$translations['customize_preview_overlay_button_2'] = __( 'Replace this section', 'vertice' );
 
 		return $translations;
 	}
@@ -484,22 +484,22 @@ add_filter(
 	function() {
 		return array(
 			StarterContent::HOME_SLUG  => array(
-				'post_title' => __( 'Home', 'rufous' ),
+				'post_title' => __( 'Home', 'vertice' ),
 				'in_menu'    => true,
 			),
 
 			// StarterContent::ABOUT_SLUG => array(
-			// 	'post_title' => __( 'About', 'rufous' ),
+			// 	'post_title' => __( 'About', 'vertice' ),
 			// 	'in_menu'    => true,
 			// ),
 
 			StarterContent::BLOG_SLUG  => array(
-				'post_title' => __( 'Blog', 'rufous' ),
+				'post_title' => __( 'Blog', 'vertice' ),
 				'in_menu'    => true,
 			),
 
 			// StarterContent::CONTACT    => array(
-			// 	'post_title' => __( 'Contact', 'rufous' ),
+			// 	'post_title' => __( 'Contact', 'vertice' ),
 			// 	'in_menu'    => true,
 			// ),
 
