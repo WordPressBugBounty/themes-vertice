@@ -4096,7 +4096,7 @@ $(document).on("click", ".kubio-customizer-panel [data-colibri-plugin-action]", 
   var builderStatusData = window.colibri_Customizer_Data.builderStatusData;
   var $el = $(event.currentTarget);
   var action = $el.data("colibri-plugin-action");
-  var source = $el.attr("source");
+  var source = $el.data("source");
   event.preventDefault();
   event.stopPropagation();
   var payload;
