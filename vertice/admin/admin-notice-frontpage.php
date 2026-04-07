@@ -1,6 +1,7 @@
 <?php
 
 use ColibriWP\Theme\Translations;
+use VerticeTheme\SiteLeadsThemeKit\SiteLeads;
 use Kubio\Theme\Theme;
 
 wp_localize_script(
@@ -124,7 +125,7 @@ wp_localize_script(
 			</div>
 		</div>
 		<div>
-			<p class="description large-text"><?php Translations::escHtmlE( 'start_with_a_front_page_plugin_info' ); ?></p>
-		</div>
+            <?php echo SiteLeads::getInstallCompanioNoticeDescriptionInWPAdminWithSiteLeadsCheck() // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+        </div>
 	</div>
 </div>
