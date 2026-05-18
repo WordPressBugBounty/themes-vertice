@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*! 
  Theme Name:   Vertice
- Version:      1.0.91
+ Version:      1.0.92
  Description:  Vertice is an innovative,  easily customizable, multi-purpose theme, focused on empowering users to build astonishing WordPress websites. Vertice is mainly designed for small businesses, startups, or personal portfolio websites and works perfectly with Kubio Page Builder which enriches the WordPress block editor with a variety of new blocks and advanced styling options to give you full design freedom.
  Author:       Extend Themes
  Author URI:   https://kubiobuilder.com
@@ -224,6 +224,8 @@ html input[disabled]{cursor:default}
  [data-kubio] .quicktags-toolbar .ed_button:focus,
  [data-kubio] .quicktags-toolbar .ed_button:hover{background:#f0f0f1!important;border-color:#0a4b78!important;color:#0a4b78!important}
  [data-kubio] img.emoji{height:1em}
+ [data-kubio] summary{display:list-item;list-style:disclosure-closed}
+ [data-kubio] details[open] summary{list-style:disclosure-open}
  .h-container{margin-left:auto;margin-right:auto;padding-left:15px;padding-right:15px;width:100%}@media (min-width:576px){
  .h-container{max-width:540px}}@media (min-width:768px){
  .h-container{max-width:720px}}@media (min-width:1024px){
@@ -1189,6 +1191,7 @@ html .h-y-container .wp-block:not([data-kubio]){max-width:100%}
  [data-kubio] .wp-block-post-comments-form .wp-block-button__link{height:auto}
  .has-fit-text.wp-block-heading,
  p.has-fit-text{max-width:100%;overflow:hidden;transition:none!important}
+ [data-kubio] .wp-block-icon svg{height:auto}
 .kubio-enable-gap-fallback .kubio-has-gap-fallback{--kubio-gap-fallback-half:calc(var(--kubio-gap-fallback)*0.5);gap:0!important;margin:calc(var(--kubio-gap-fallback-half)*-1)!important}
 .kubio-enable-gap-fallback .kubio-has-gap-fallback>*{margin:var(--kubio-gap-fallback-half)!important}
 .kubio-attachment-fixed-support-fallback [data-kubio],
@@ -1899,18 +1902,23 @@ html[lang] .wp-block-kubio-dropdown-menu>.kubio-menu>.menu>.menu-item>a>br{displ
  .wp-block-kubio-post-comments.kubio-migration--1 .comment-respond p.comment-notes{font-size:80%}
  .wp-block-kubio-post-comments.kubio-migration--1 .blog-post-comments-not-allow{background-color:rgba(3,169,244,.05);border:1px solid rgba(3,169,244,.1);border-radius:3px;padding-bottom:20px;padding-top:20px;text-align:center}
  .wp-block-kubio-post-comments.kubio-migration--1 .blog-post-comments-not-allow .blog-comments-not-allow-message{font-size:16px;font-weight:800}
- .entry-content>*{margin:clamp(1rem,.5em,2.5rem) auto clamp(1rem,.25em,2rem)}
- .entry-content>:first-child{margin-top:0}
- .entry-content>:last-child{margin-bottom:0}
- .entry-content>.wp-block-kubio-section{margin:0;max-width:unset}
- .entry-content>*{max-width:840px}
- .entry-content .alignwide{margin-left:auto;margin-right:auto;max-width:1200px;width:100%}@media (max-width:767px){
- .entry-content .alignwide{max-width:100%;width:100%}}@media (min-width:768px) and (max-width:1023px){
- .entry-content .alignwide{max-width:100%;width:100%}}
- .wp-block-kubio-section .entry-content>*{margin:clamp(1rem,.5em,2.5rem) auto clamp(1rem,.25em,2rem)}
- .wp-block-kubio-section .entry-content>:first-child{margin-top:0}
- .wp-block-kubio-section .entry-content>:last-child{margin-bottom:0}
- .wp-block-kubio-section .entry-content>.wp-block-kubio-section{margin:0;max-width:unset}
+ .entry-content:not(.wc-tab)>*{margin:clamp(1rem,.5em,2.5rem) auto clamp(1rem,.25em,2rem)}
+ .entry-content:not(.wc-tab)>:first-child{margin-top:0}
+ .entry-content:not(.wc-tab)>:last-child{margin-bottom:0}
+ .entry-content:not(.wc-tab)>.wp-block-kubio-section{margin:0;max-width:unset}
+ .entry-content:not(.wc-tab)>*{max-width:840px}
+ .entry-content:not(.wc-tab) .alignwide{margin-left:auto;margin-right:auto;max-width:1200px;width:100%}@media (max-width:767px){
+ .entry-content:not(.wc-tab) .alignwide{max-width:100%;width:100%}}@media (min-width:768px) and (max-width:1023px){
+ .entry-content:not(.wc-tab) .alignwide{max-width:100%;width:100%}}
+ .wp-block-kubio-section .entry-content:not(.wc-tab)>*{margin:clamp(1rem,.5em,2.5rem) auto clamp(1rem,.25em,2rem)}
+ .wp-block-kubio-section .entry-content:not(.wc-tab)>:first-child{margin-top:0}
+ .wp-block-kubio-section .entry-content:not(.wc-tab)>:last-child{margin-bottom:0}
+ .wp-block-kubio-section .entry-content:not(.wc-tab)>.wp-block-kubio-section{margin:0;max-width:unset}
+ .wp-block-kubio-section .entry-content:not(.wc-tab)>*{max-width:840px}
+ .wp-block-kubio-section .entry-content:not(.wc-tab) .alignwide{margin-left:auto;margin-right:auto;max-width:1200px;width:100%}@media (max-width:767px){
+ .wp-block-kubio-section .entry-content:not(.wc-tab) .alignwide{max-width:100%;width:100%}}@media (min-width:768px) and (max-width:1023px){
+ .wp-block-kubio-section .entry-content:not(.wc-tab) .alignwide{max-width:100%;width:100%}}
+ .wp-site-blocks:has(.wp-block-kubio-header) .wp-block-post-content{-webkit-margin-before:0;-webkit-margin-after:0;margin-block-end:0;margin-block-start:0}
  .wp-block-kubio-post-featured-image{margin:0}
  .wp-block-kubio-post-featured-image>img{border-radius:inherit;display:block;height:100%;width:100%}
  .wp-block-kubio-post-featured-image .block-list-appender{width:100%}
