@@ -14,10 +14,6 @@
       if(!extendPluginNotice) {
         extendPluginNotice = function() {}
       }
-      await top.prepareSiteLeadsPlugin({
-        setIsLoadingText: extendPluginNotice,
-        startSource:  'theme-section-button'
-      })
     } catch(e) {
       console.error(e)
     }

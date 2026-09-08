@@ -4,39 +4,32 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit785374f460b44480c81ba4e5135ab7ff
+class ComposerStaticInit78dfe09be5dd20d25c187b6d0d60b880
 {
     public static $prefixLengthsPsr4 = array (
-        'V' => 
+        'V' =>
         array (
             'VerticeTheme\\SiteLeadsThemeKit\\' => 31,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'VerticeTheme\\SiteLeadsThemeKit\\' => 
+        'VerticeTheme\\SiteLeadsThemeKit\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
     public static $classMap = array (
-        'VerticeTheme\\SiteLeadsThemeKit\\Bootstrap' => __DIR__ . '/../..' . '/src/Bootstrap.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\Customizer\\Controls\\SiteLeadsIntegrationButton' => __DIR__ . '/../..' . '/src/Customizer/Controls/SiteLeadsIntegrationButton.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\Customizer\\Sections\\SiteLeadsSection' => __DIR__ . '/../..' . '/src/Customizer/Sections/SiteLeadsSection.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\Flags' => __DIR__ . '/../..' . '/src/Flags.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\Hooks' => __DIR__ . '/../..' . '/src/Hooks.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\Singleton' => __DIR__ . '/../..' . '/src/Singleton.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\SiteLeads' => __DIR__ . '/../..' . '/src/SiteLeads.php',
-        'VerticeTheme\\SiteLeadsThemeKit\\Theme' => __DIR__ . '/../..' . '/src/Theme.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit785374f460b44480c81ba4e5135ab7ff::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit785374f460b44480c81ba4e5135ab7ff::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit785374f460b44480c81ba4e5135ab7ff::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit78dfe09be5dd20d25c187b6d0d60b880::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit78dfe09be5dd20d25c187b6d0d60b880::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit78dfe09be5dd20d25c187b6d0d60b880::$classMap;
 
         }, null, ClassLoader::class);
     }

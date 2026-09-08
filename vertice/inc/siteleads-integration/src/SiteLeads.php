@@ -62,6 +62,20 @@ class SiteLeads {
         return   Flags::get(static::ENABLE_SITE_LEADS_INTEGRATION_FLAG);
     }
 
+    public function was_previously_set(){
+        $theme_mods = get_option( 'theme_mods_' . get_stylesheet(), array() );
+        $keys_to_check = array(
+            Theme::prefix( 'siteleads_number' ),
+            Theme::prefix( 'show_contact_phone' ),
+        );
+        foreach ( $keys_to_check as $key ) {
+            if ( array_key_exists( $key, $theme_mods ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function run_first_time_activation_hooks() {
         Flags::set(static::ENABLE_SITE_LEADS_INTEGRATION_FLAG, true);
     }
@@ -108,6 +122,11 @@ class SiteLeads {
     }
 
     public function enqueue_admin_scripts() {
+
+        if ( ! $this->was_previously_set() ) {
+            return;
+        }
+
         wp_enqueue_script( Theme::prefix( 'siteleads-installer-js' ), Theme::get_url_path( '/assets/siteleads-installer/js/siteleads-installer.min.js' ), array( 'jquery' ), false, true );
         wp_enqueue_style(
             Theme::prefix( 'siteleads-admin-css' ),
@@ -125,6 +144,9 @@ class SiteLeads {
 
     public function enqueue_assets_customize_preview() {
 
+    if(!$this->was_previously_set()) {
+            return;
+        }
         wp_enqueue_style(
             Theme::prefix( 'siteleads-customizer-preview-css' ),
             Theme::get_url_path( '/assets/customizer-preview/css/customizer-preview-style.min.css' )
@@ -132,6 +154,9 @@ class SiteLeads {
     }
     public function register_customizer_assets() {
 
+    if(!$this->was_previously_set()) {
+            return;
+        }
         wp_enqueue_script( Theme::prefix( 'siteleads-installer-js' ), Theme::get_url_path( '/assets/siteleads-installer/js/siteleads-installer.min.js' ), array( 'jquery' ), false, true );
         wp_enqueue_script( Theme::prefix( 'siteleads-customizer-js' ), Theme::get_url_path( '/assets/customizer/js/customizer.min.js' ), array( 'jquery' ), false, true );
         wp_enqueue_style(
@@ -462,6 +487,11 @@ class SiteLeads {
 
 
     public function add_customizer_controls_and_settings( $wp_customize ) {
+
+        if( ! $this->was_previously_set() ) {
+            return;
+        }
+
         $wp_customize->register_section_type(
             SiteLeadsSection::class
         );
@@ -703,6 +733,11 @@ class SiteLeads {
 
 
     public function should_show_contact_widget_no_site_leads_active() {
+
+        if( !$this->was_previously_set() ) {
+            return;
+        }
+
         $site_leads_is_active = defined( 'SITELEADS_VERSION' );
         if ( $site_leads_is_active ) {
             return false;

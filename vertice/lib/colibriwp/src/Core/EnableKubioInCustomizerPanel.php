@@ -5,7 +5,6 @@ namespace ColibriWP\Theme\Core;
 use ColibriWP\Theme\PluginsManager;
 use ColibriWP\Theme\Theme;
 use TGM_Plugin_Activation;
-use VerticeTheme\SiteLeadsThemeKit\SiteLeads;
 const PRO = '-pro';
 
 class EnableKubioInCustomizerPanel extends \WP_Customize_Panel {
@@ -135,18 +134,23 @@ class EnableKubioInCustomizerPanel extends \WP_Customize_Panel {
 
 	protected function render() {
 
+		$message = sprintf(
+			__( 'To enable all the theme features, please install Kubio Page Builder plugin', 'vertice' ),
+			wp_get_theme( get_stylesheet() )->get( 'Name' )
+		);
+
 		?>
 		<li class="accordion-section kubio-customizer-panel">
 		<?php if ( $this->getPluginState( $this->plugin_slug ) !== PluginsManager::ACTIVE_PLUGIN ) : ?>
 			<div class="accordion-section-title">
-                <?php echo SiteLeads::getInstallCompanioNoticeDescriptionSectionListInCustomizerWithSiteLeadsCheck(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<p><?php echo esc_html( $message ); ?></p>
 				<?php if ( $this->getPluginState( $this->plugin_slug ) === PluginsManager::NOT_INSTALLED_PLUGIN ) : ?>
 				<button data-colibri-plugin-action="install" data-source="customizer-sidebar" class="button button-primary kubio-open-editor-panel-button ">
-					<span data-action="install"><?php echo esc_html(SiteLeads::getInstallCompanionButtonLabelWithSiteLeadsCheck()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span data-action="install"><?php esc_html_e( 'Install Kubio Page Builder', 'vertice' ); ?></span>
 				</button>
 			<?php elseif ( $this->getPluginState( $this->plugin_slug ) === PluginsManager::INSTALLED_PLUGIN ) : ?>
 				<button data-colibri-plugin-action="activate" data-source="customizer-sidebar" class="button button-primary kubio-open-editor-panel-button">
-					<span data-action="activate"><?php echo esc_html(SiteLeads::getActivateCompanionButtonLabelWithSiteLeadsCheck());// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span data-action="activate"><?php esc_html_e( 'Activate Kubio Page Builder', 'vertice' ); ?></span>
 				</button>
 			<?php endif; ?>
 			</div>

@@ -7,7 +7,6 @@ use ColibriWP\Theme\Core\Hooks;
 use ColibriWP\Theme\PluginsManager;
 use ColibriWP\Theme\Theme;
 use ColibriWP\Theme\Translations;
-use VerticeTheme\SiteLeadsThemeKit\SiteLeads;
 
 class PluginMessageControl extends VueControl {
 
@@ -23,13 +22,15 @@ class PluginMessageControl extends VueControl {
 				<i class="el-icon-close"></i>
 			</button>
 
-            <?php echo SiteLeads::getInstallCompanioNoticeDescriptionInCustomizerWithSiteLeadsCheck();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+			<p>
+				<?php echo Translations::get( 'plugin_message', 'Kubio Page Builder' ); ?>
+			</p>
 
 			<?php if ( Theme::getInstance()->getPluginsManager()->getPluginState( $this->getBuilderSlug() ) === PluginsManager::NOT_INSTALLED_PLUGIN ) : ?>
 				<button data-colibri-plugin-action="install"
 						class="el-button el-link h-col el-button--primary el-button--small"
 						style="text-decoration: none">
-                    <?php echo SiteLeads::getInstallCompanionButtonLabelWithSiteLeadsCheck();// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo Translations::get( 'install_with_placeholder', 'Kubio Page Builder' ); ?>
 				</button>
 			<?php endif; ?>
 
@@ -37,7 +38,7 @@ class PluginMessageControl extends VueControl {
 				<button data-colibri-plugin-action="activate"
 						class="el-button el-link h-col el-button--primary el-button--small"
 						style="text-decoration: none">
-                    <?php echo SiteLeads::getActivateCompanionButtonLabelWithSiteLeadsCheck(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo Translations::get( 'activate_with_placeholder', 'Kubio Page Builder' ); ?>
 				</button>
 			<?php endif; ?>
 
