@@ -1238,10 +1238,21 @@ window.Colibri = _kubio_scripts_src_base__WEBPACK_IMPORTED_MODULE_0__.ColibriFro
     start: function start() {
       if (!(this.opts && this.opts.arrowSelector && this.opts.scrollTargetSelector)) {
         return;
+      } // the selectors are merged in from the element's data attributes, so they carry whatever was stored in the
+      // markup. `$( string )` builds a string starting with `<` as HTML, which runs inline handlers; `.find()` only
+      // ever evaluates it as a selector, and an unparsable one leaves the arrow without a target.
+
+
+      var $scrollTarget;
+
+      try {
+        this.$arrow = this.$element.find(this.opts.arrowSelector);
+        $scrollTarget = $(document).find(this.opts.scrollTargetSelector);
+      } catch (error) {
+        this.$arrow = null;
+        return;
       }
 
-      this.$arrow = this.$element.find(this.opts.arrowSelector);
-      var $scrollTarget = $(this.opts.scrollTargetSelector);
       this.$arrow.smoothScrollAnchor({
         target: $scrollTarget
       });
@@ -3680,8 +3691,22 @@ function ColibriBase() {
       this.$element = $(element);
       var elementData = this.$element.data();
       this.settings = this.$element.data(settingsAttr) || {};
-      this.opts = $.extend(true, {}, this.defaults, $.fn[libPrefix + this.namespace].options, elementData, this.settings, options);
-      this.$target = typeof this.opts.target === 'string' ? $(this.opts.target) : null;
+      this.opts = $.extend(true, {}, this.defaults, $.fn[libPrefix + this.namespace].options, elementData, this.settings, options); // `target` is merged in from the element's own data attributes --
+      // `data-target` and the `target` key of `data-kubio-settings` --
+      // so it carries whatever was stored in the markup. `$( string )`
+      // builds a string starting with `<` as HTML, which runs inline
+      // handlers; `.find()` only ever evaluates it as a selector, and
+      // an unparsable one leaves the component without a target.
+
+      this.$target = null;
+
+      if (typeof this.opts.target === 'string') {
+        try {
+          this.$target = $(document).find(this.opts.target);
+        } catch (error) {
+          this.$target = null;
+        }
+      }
     };
 
     Colibri.getScrollingElement = function () {
